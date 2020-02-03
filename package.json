@@ -1,0 +1,31 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "minha feira",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wba25/minha-feira.git"
+  },
+  "keywords": [
+    "smart",
+    "farm",
+    "sell",
+    "crops",
+    "small",
+    "farms"
+  ],
+  "author": "Wellington Almeida & Celso Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wba25/minha-feira/issues"
+  },
+  "homepage": "https://github.com/wba25/minha-feira#readme",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5"
+  }
+}
