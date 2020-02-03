@@ -1,31 +1,42 @@
 {
-  "name": "app",
+  "name": "pwa-vue-app-1",
   "version": "1.0.0",
-  "description": "minha feira",
+  "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack -p --mode production",
+    "build:dev": "webpack -d --mode development",
+    "dev": "webpack-dev-server --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wba25/minha-feira.git"
-  },
   "keywords": [
-    "smart",
-    "farm",
-    "sell",
-    "crops",
-    "small",
-    "farms"
+    "babel",
+    "pwa",
+    "vue",
+    "vuejs",
+    "webpack",
+    "webpack-dev-server"
   ],
-  "author": "Wellington Almeida & Celso Costa",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wba25/minha-feira/issues"
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   },
-  "homepage": "https://github.com/wba25/minha-feira#readme",
   "dependencies": {
-    "vue": "^2.6.11",
-    "vue-router": "^3.1.5"
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3"
   }
 }
