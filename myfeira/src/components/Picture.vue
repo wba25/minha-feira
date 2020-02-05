@@ -1,16 +1,29 @@
 <template>
-    <div class="camera-modal">
-        <video ref="video" class="camera-stream"/>
-        <div class="camera-modal-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 align-middle">
+                <h2 class="" for="">Tire uma foto da sua mercadoria:</h2>
+                <div class="camera-modal">
+                    <video ref="video" class="camera-stream embed-responsive"/>
+                    <div class="camera-modal-container">
+                    </div>
+                    <v-btn class="take-picture-button" @click="capture" color="pink" dark fab>
+                        <v-icon>camera</v-icon>
+                    </v-btn>
+                </div>
+            </div>
         </div>
-            <v-btn class="take-picture-button" @click="capture" color="pink" dark fab>
-                <v-icon>camera</v-icon>
-            </v-btn>
     </div>
 </template>
 
 <script>
 export default {
+    props:{
+        crop:String,
+        qty:String,
+        distance:String,
+        camera_pictures: Array
+    },
     data(){
         return{}
     },
@@ -50,11 +63,12 @@ export default {
     },
     methods: {
         capture () {
-            const vm =this;
+            const vm = this;
             const mediaStreamTrack = this.mediaStream.getVideoTracks()[0]
             const imageCapture = new window.ImageCapture(mediaStreamTrack)
             return imageCapture.takePhoto().then(blob => {
-                this.$router.push({name: 'addpictures', params:{}})
+                this.camera_pictures.push(blob);
+                this.$router.push({name: 'addpictures',params:{crop: this.crop + "", qty: this.qty+"", distance: this.distance, camera_pictures: this.camera_pictures }})
             })
         }
     }
@@ -72,8 +86,6 @@ export default {
         z-index: 10;
     }
     .camera-stream {
-        width: 100%;
-        max-height: 100%;
     }
     .camera-modal-container {
         position: absolute;

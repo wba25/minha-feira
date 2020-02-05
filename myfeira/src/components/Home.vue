@@ -1,18 +1,24 @@
 <template>
-    <div class="mdl-grid">
-        <div style="text-align: center">
-            <div class="mdl-cell mdl-cell--12-col">
-                <h1 v-if="!tenders.length">{{welcome_text}}</h1>
+    <div class="container h-100">
+        <div class="row align-middle" style="text-align: center">        
+            <img class="img-fluid" src="../../public/assets/logo_mf/Logo_Minha_Feira_logo_1280x800.png"/>
+            <div class="col-12">
+                <h1 v-if="!tenders.length" style="margin-top:20px;">{{welcome_text}}</h1>
                 <div v-else>
                     <!-- TODO: render poster cards  -->
                     As propostas
                 </div>
             </div>
-            <div class="mdl-cell mdl-cell--12-col">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" @click="$router.push({name: 'typeproduction', params:{}})">
-                    <i class="fab fa-envira"></i>
-                    Vender safra
-                </button>
+            <div class="fixed-bottom">
+                <div class="container">               
+                    <div class="col-12"> 
+                        <button class="btn btn-success btn-lg" @click="$router.push({name: 'typeproduction', params:{}})">
+                            <i class="fab fa-envira"></i>
+                            Vender safra
+                        </button>
+                    </div>
+                    <br/>
+                </div>
             </div>
         </div>
     </div>
@@ -20,10 +26,21 @@
 
 <script>
 export default {
+    props: {
+        getted_tenders:Object
+    },
     data(){
         return{
             welcome_text: "Seja bem vindo ao minha feira!",
             tenders: []
+        }
+    },
+    mounted () {
+        if(this.getted_tenders != null) this.tenders = this.getted_tenders.map(this.getURL);
+    },
+    methods:{
+        getURL(blob) {
+            return URL.createObjectURL(blob);
         }
     }
 }

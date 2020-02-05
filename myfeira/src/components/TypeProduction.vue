@@ -1,13 +1,15 @@
 <template>
-    <div class="mdl-grid">
-        <div style="text-align: center">
-            <div class="mdl-cell mdl-cell--12-col">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" @click="$router.push({name: 'cultivationqty', params:{}})">
-                    <i class="fas fa-seedling"></i>
+    <div class="container h-100">
+        <div class="row align-items-center justify-content-center h-100">
+            <div class="col-12 align-middle">
+                <button style="width:100%" class="btn btn-success btn-lg text-center" @click="$router.push({name: 'cultivationqty', params:{}})">
+                    <i class="fas fa-seedling"></i> <br>
                     Agricultura
                 </button>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" @click="$router.push({name: 'cultivationqty', params:{}})">
-                    <i class="fas fa-fish"></i>
+                <br>
+                <br>
+                <button style="width:100%" class="btn btn-info btn-lg text-center" @click="$router.push({name: 'cultivationqty', params:{}})">
+                    <i class="fas fa-fish"></i><br>
                     Pecuaria
                 </button>
             </div>
