@@ -5,8 +5,18 @@
             <div class="col-12">
                 <h1 v-if="!tenders.length" style="margin-top:20px;">{{welcome_text}}</h1>
                 <div v-else>
-                    <!-- TODO: render poster cards  -->
-                    As propostas
+                    <div class="col-12">
+                        <div class="card-group">
+                            <div v-for="ten in tenders" class="card">
+                                <v-img v-if="ten.pictures != null" class="card-img-top" :src="ten.pictures[0]"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ten.crop}}</h5>
+                                    <p class="card-text lead">{{ten.qty}} kg</p>
+                                    <a href="#" class="btn btn-success text-white">Abrir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="fixed-bottom">
@@ -25,9 +35,10 @@
 </template>
 
 <script>
+
+import firebase from '../configFirebase.js'
 export default {
     props: {
-        getted_tenders:Object
     },
     data(){
         return{
@@ -36,7 +47,17 @@ export default {
         }
     },
     mounted () {
-        if(this.getted_tenders != null) this.tenders = this.getted_tenders.map(this.getURL);
+        firebase.db.collection('advertisements').orderBy('created_at').onSnapshot((snapShot) => {
+            this.tenders=[];
+            snapShot.forEach((t)  => {
+                this.tenders.push({
+                    crop:t.data().crop,
+                    qty:t.data().qty,
+                    distance:t.data().distance,
+                    pictures:t.data().pictures                    
+                })
+            });
+        });
     },
     methods:{
         getURL(blob) {

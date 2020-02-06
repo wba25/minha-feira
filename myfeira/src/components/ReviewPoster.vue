@@ -35,6 +35,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+import postAdvertisement from './postAdvertisement.js'
+import firebase from '../configFirebase.js'
+
 export default {    
     props:{
         crop:String,
@@ -55,15 +59,29 @@ export default {
             return URL.createObjectURL(blob);
         },
         confirm() {
-            /*
-            tender = {
-                crop,
-                qty,
-                distance,
-                camera_pictures
-            }
+            /*var url_pictures = this.camera_pictures.map(
+                blob => {
+                    firebase.storage.ref().child(`images/picture-${new Date().getTime()}`).put(blob)
+                        .then(res =>  {
+                            res.ref.getDownloadURL().then((pictureUrl) => {
+                                console.log("File available at", pictureUrl);
+                                return pictureUrl;
+                            });
+                            
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            return "";
+                        });
+                }
+            );*/
+
+            //console.log(url_pictures);
+
+            postAdvertisement(this.crop, this.qty, this.distance, null);
+            
             this.$router.push({name: 'home',params:{}}); 
-            */
+            
         },
         cancel() {
             this.$router.push({name: 'home',params:{}});          

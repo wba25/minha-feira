@@ -17,7 +17,7 @@
                         <div class="col-12">
                             <div class="card-group">
                                 <div v-for="ad in adverts" class="card">
-                                    <v-img class="card-img-top" :src="ad.pictures[0]"/>
+                                    <v-img v-if="ad.pictures != null" class="card-img-top" :src="ad.pictures[0]"/>
                                     <div class="card-body">
                                         <h5 class="card-title">{{ad.crop}}</h5>
                                         <p class="card-text lead">{{ad.qty}} kg</p>
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import firebase from '../configFirebase.js'
 export default {
     props: {
         getted_tenders:Object
@@ -130,6 +131,21 @@ export default {
     },
     mounted () {
         this.open_explore();
+
+        firebase.db.collection('advertisements').orderBy('created_at').onSnapshot((snapShot) => {
+            this.adverts=[];
+            snapShot.forEach((t)  => {
+                this.adverts.push({
+                    crop:t.data().crop,
+                    qty:t.data().qty,
+                    distance:t.data().distance,
+                    pictures:t.data().pictures,
+                    productor_name: "João",
+                    productor_distance: 142,
+                    productor_phone: "(81) 9 8291-1337"
+                })
+            });
+        });
     },
     methods:{
         open_explore() {

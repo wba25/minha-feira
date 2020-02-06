@@ -60,7 +60,7 @@ export default {
         }
     },
     mounted () {
-        this.pictures = this.camera_pictures.map(this.getURL);
+        if(this.camera_pictures != null) this.pictures = this.camera_pictures.map(this.getURL);
     }
 }
 </script>

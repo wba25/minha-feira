@@ -71,6 +71,10 @@ export default {
                 this.$router.push({name: 'addpictures',params:{crop: this.crop + "", qty: this.qty+"", distance: this.distance, camera_pictures: this.camera_pictures }})
             })
         }
+    },
+    destroyed () {
+        const tracks = this.mediaStream.getTracks()
+        tracks.map(track => track.stop())
     }
 }
 </script>
